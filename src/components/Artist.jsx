@@ -96,9 +96,9 @@ const Artist = () => {
 
   return (
     <>
-      <Col class="col-12 col-md-9 offset-md-3 mainPage">
-        <Row class="row mb-3">
-          <Col class="col-9 col-lg-11 mainLinks d-none d-md-flex">
+      <Col className="col-12 col-md-9 offset-md-3 mainPage">
+        <Row className="row mb-3">
+          <Col className="col-9 col-lg-11 mainLinks d-none d-md-flex">
             <a href="#d">TRENDING</a>
             <a href="#d">PODCAST</a>
             <a href="#f">MOODS AND GENRES</a>
@@ -107,19 +107,22 @@ const Artist = () => {
           </Col>
         </Row>
 
-        <Row class="row">
-          <Col class="col-12 col-md-10 col-lg-10 mt-5">
-            <h2 class="titleMain"> </h2>
+        <Row className="row">
+          <Col className="col-12 col-md-10 col-lg-10 mt-5">
+            <h2 className="titleMain"> </h2>
             <div id="followers"></div>
-            <div class="d-flex justify-content-center" id="button-container">
+            <div
+              className="d-flex justify-content-center"
+              id="button-container"
+            >
               <Button
-                class="btn btn-success mr-2 mainButton d-none"
+                className="btn btn-success mr-2 mainButton d-none"
                 id="playButton"
               >
                 PLAY
               </Button>
               <Button
-                class="btn btn-outline-light mainButton d-none"
+                className="btn btn-outline-light mainButton d-none"
                 id="followButton"
               >
                 FOLLOW
@@ -127,13 +130,13 @@ const Artist = () => {
             </div>
           </Col>
         </Row>
-        <Row class="row mb-3">
-          <Col class="col-10 offset-1 col-md-10 col-lg-10 p-0">
-            <div class="mt-4 d-flex justify-content-start">
-              <h2 class="text-white font-weight-bold">Tracks</h2>
+        <Row className="row mb-3">
+          <Col className="col-10 offset-1 col-md-10 col-lg-10 p-0">
+            <div className="mt-4 d-flex justify-content-start">
+              <h2 className="text-white font-weight-bold">Tracks</h2>
             </div>
-            <div class="pt-5 mb-5">
-              <Row class="row" id="apiLoaded"></Row>
+            <div className="pt-5 mb-5">
+              <Row className="row" id="apiLoaded"></Row>
             </div>
           </Col>
         </Row>
