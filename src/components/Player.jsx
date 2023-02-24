@@ -1,4 +1,9 @@
 import { Col, Container, ProgressBar, Row } from "react-bootstrap";
+import Shuffle from "../assets/playerbuttons/Shuffle.png";
+import Previous from "../assets/playerbuttons/Previous.png";
+import Play from "../assets/playerbuttons/Play.png";
+import Next from "../assets/playerbuttons/Next.png";
+import Repeat from "../assets/playerbuttons/Repeat.png";
 
 const Player = () => {
   return (
@@ -10,28 +15,19 @@ const Player = () => {
               <Col className="col-1 col-md-1 col-lg-1 offset-3 offset-md-4 offset-lg-6 playerControls mt-1">
                 <Row className="row d-flex flex-row flex-nowrap ">
                   <a href="#h" className="p-0">
-                    <img
-                      src="./assets/playerbuttons/Shuffle.png"
-                      alt="shuffle"
-                    />
+                    <img src={Shuffle} alt="shuffle" />
                   </a>
                   <a href="#h" className="p-0">
-                    <img
-                      src="./assets/playerbuttons/Previous.png"
-                      alt="shuffle"
-                    />
+                    <img src={Previous} alt="shuffle" />
                   </a>
                   <a href="#h" className="p-0">
-                    <img src="./assets/playerbuttons/Play.png" alt="shuffle" />
+                    <img src={Play} alt="shuffle" />
                   </a>
                   <a href="#h" className="p-0">
-                    <img src="./assets/playerbuttons/Next.png" alt="shuffle" />
+                    <img src={Next} alt="shuffle" />
                   </a>
                   <a href="#g" className="p-0">
-                    <img
-                      src="./assets/playerbuttons/Repeat.png"
-                      alt="shuffle"
-                    />
+                    <img src={Repeat} alt="shuffle" />
                   </a>
                 </Row>
               </Col>

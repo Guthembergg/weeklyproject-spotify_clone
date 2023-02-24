@@ -1,6 +1,14 @@
 import { Button, Col, Collapse, Row } from "react-bootstrap";
-
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 const Artist = () => {
+  const [artist, setArtist] = useState([]);
+  const [tracks, setTracks] = useState([]);
+
+  const param = useParams();
+
   function albumCard(songInfo) {
     return `
           <div class="col-sm-auto col-md-auto text-center mb-5">
@@ -28,8 +36,8 @@ const Artist = () => {
           </div>`;
   }
 
-  window.onload = async () => {
-    let artistId = new URLSearchParams(document.location.search).get("id");
+  const handleArtist = async () => {
+    let artistId = param.id;
 
     let headers = new Headers({
       "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
@@ -47,25 +55,9 @@ const Artist = () => {
 
       if (response.ok) {
         let artist = await response.json();
-
+        console.log(artist);
+        setArtist(artist);
         // displaying the playButton
-        let playButton = document.querySelector("#playButton");
-        playButton.classList.remove("d-none");
-        playButton.classList.add("d-inline");
-
-        // displaying the followButton
-        let followButton = document.querySelector("#followButton");
-        followButton.classList.remove("d-none");
-        followButton.classList.add("d-inline");
-
-        // setting the artist name
-        let titleMain = document.querySelector(".titleMain");
-        titleMain.innerHTML = artist.name;
-
-        // setting the followers section
-        let followers = document.querySelector("#followers");
-        followers.innerText = artist.nb_fan + " followers";
-
         let tracksResponse = await fetch(
           // await the fetch of the artist songs
           "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
@@ -78,26 +70,23 @@ const Artist = () => {
 
         if (tracksResponse.ok) {
           let tracklist = await tracksResponse.json();
-          for (let i = 0; i < tracklist.data.length; i++) {
-            let apiLoaded = document.querySelector("#apiLoaded");
-            apiLoaded.innerHTML += albumCard(tracklist.data[i]);
-          }
+          setTracks(tracklist.data);
+          console.log(tracklist);
         }
       } else {
         // something went wrong with the request --> i.e. headers missing, wrong HTTP Method
-        document.querySelector("#apiLoaded").innerHTML =
-          "NOT OK" + (await response.text());
       }
     } catch (exception) {
       // ex.: Url is not correct, Internal Server Error
-      document.querySelector("#apiLoaded").innerHTML = exception;
     }
   };
-
+  useEffect(() => {
+    handleArtist();
+  }, []);
   return (
     <>
       <Col className="col-12 col-md-9 offset-md-3 mainPage">
-        <Row className="row mb-3">
+        <Row className="row mb-3 m-0">
           <Col className="col-9 col-lg-11 mainLinks d-none d-md-flex">
             <a href="#d">TRENDING</a>
             <a href="#d">PODCAST</a>
@@ -107,36 +96,71 @@ const Artist = () => {
           </Col>
         </Row>
 
-        <Row className="row">
+        <Row className="row m-0">
           <Col className="col-12 col-md-10 col-lg-10 mt-5">
-            <h2 className="titleMain"> </h2>
-            <div id="followers"></div>
+            <h2 className="titleMain">{artist && artist.name} </h2>
+            <div id="followers">{artist && artist.nb_fan}</div>
             <div
               className="d-flex justify-content-center"
               id="button-container"
             >
-              <Button
-                className="btn btn-success mr-2 mainButton d-none"
-                id="playButton"
-              >
-                PLAY
-              </Button>
-              <Button
-                className="btn btn-outline-light mainButton d-none"
-                id="followButton"
-              >
-                FOLLOW
-              </Button>
+              {artist && (
+                <>
+                  <Button
+                    className="btn btn-success mr-2 mainButton"
+                    id="playButton"
+                  >
+                    PLAY
+                  </Button>
+                  <Button
+                    className="btn btn-outline-light mainButton "
+                    id="followButton"
+                  >
+                    FOLLOW
+                  </Button>
+                </>
+              )}
             </div>
           </Col>
         </Row>
-        <Row className="row mb-3">
+        <Row className="row mb-3 m-0">
           <Col className="col-10 offset-1 col-md-10 col-lg-10 p-0">
             <div className="mt-4 d-flex justify-content-start">
               <h2 className="text-white font-weight-bold">Tracks</h2>
             </div>
             <div className="pt-5 mb-5">
-              <Row className="row" id="apiLoaded"></Row>
+              <Row className="row" id="apiLoaded">
+                {tracks?.map((songInfo) => (
+                  <div class="col-sm-auto col-md-auto text-center mb-5">
+                    <a href={`/album/${songInfo.album.id}`}>
+                      <img
+                        class="img-fluid"
+                        src={
+                          songInfo.album.cover_medium // creating the album image anchor
+                        }
+                        alt="1"
+                      />
+                    </a>
+                    <p>
+                      <a href="#yh">
+                        {
+                          songInfo.title.length < 16
+                            ? `${songInfo.title}`
+                            : `${songInfo.title.substring(0, 16)}...` // setting the track title, if it's longer than 16 chars cuts the rest
+                        }
+                      </a>
+                      <br></br>
+                      <a href={`/album/${songInfo.album.id}`}>
+                        {
+                          songInfo.album.title.length < 16
+                            ? `${songInfo.album.title}`
+                            : `${songInfo.album.title.substring(0, 16)}...` // setting the track title, if it's longer than 16 chars cuts the rest
+                        }
+                      </a>
+                    </p>
+                  </div>
+                ))}
+              </Row>
             </div>
           </Col>
         </Row>

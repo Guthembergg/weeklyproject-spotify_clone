@@ -231,3 +231,6 @@ ul {
 .mainPage img {
   width: 200px;
 }
+a {
+  text-decoration: none;
+}

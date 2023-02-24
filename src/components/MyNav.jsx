@@ -1,6 +1,7 @@
 import { Col, Container, Nav, Row } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { BsFillBookFill } from "react-icons/bs";
+import logo from "../assets/logo/Spotify_Logo.png";
 
 const MyNav = () => {
   return (
@@ -13,13 +14,8 @@ const MyNav = () => {
               id="sidebar"
             >
               <div className="nav-container">
-                <a className="navbar-brand" href="index.html">
-                  <img
-                    src="./assets/logo/spotify_Logo.png"
-                    alt="Spotify_Logo"
-                    width="131"
-                    height="40"
-                  />
+                <a className="navbar-brand" href="/">
+                  <img src={logo} alt="Spotify_Logo" width="131" height="40" />
                 </a>
                 <button
                   className="navbar-toggler"
@@ -39,7 +35,7 @@ const MyNav = () => {
                   <div className="navbar-nav">
                     <ul>
                       <li>
-                        <a className="nav-item nav-link" href="index.html">
+                        <a className="nav-item nav-link" href="/">
                           <FaHome />
                           &nbsp; Home
                         </a>
