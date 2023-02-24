@@ -102,7 +102,9 @@ ul {
   margin-top: 1rem;
   filter: brightness(60%);
 }
-
+.playerControls a {
+  width: 50px;
+}
 .playerControls a:hover {
   filter: brightness(80%);
   color: #282828 !important;
