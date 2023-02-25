@@ -61,7 +61,7 @@ const dispatch=useDispatch()
             {album && (
               <>
                 <img
-                  src={album?.cover}
+                  src={album?.cover_medium}
                   className="card-img img-fluid"
                   alt="Album"
                 />

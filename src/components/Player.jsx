@@ -15,7 +15,7 @@ const Player = () => {
       <div className="container-fluid fixed-bottom bg-container pt-1 ">
         <Row className="row">
           <Col xs={12} className="col-lg-10 offset-lg-1 ">
-            <Row className="row "><Col xs={6}>{track && (<><div className="d-flex offset-3 offset-md-6 offset-lg-4 align-items-center"><img src={track.album.cover_small} alt="song" className="" style={{width:"100px"}}/><p className="fs-5 text-white ms-2">{track.title}</p></div></>)}</Col> 
+            <Row className="row "><Col xs={6} className="">{track && (<><div className="d-flex offset-3 offset-md-6 offset-lg-4 align-items-center "><img src={track.album.cover_medium} alt="song" className="" style={{width:"77px"}}/><p className="fs-5 text-white ms-2 p-0 m-0">{track.title}</p></div></>)}</Col> 
               <Col className="col-1 col-md-1 col-lg-1 playerControls mt-1 d-flex ">
                 <Row className="row d-flex flex-column flex-nowrap ">
                   <div className="d-flex"><a href="#h" className="p-0">
