@@ -12,14 +12,13 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <MyNav />
-
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/album/:id" element={<Album />}></Route>
           <Route path="/artist/:id" element={<Artist />}></Route>
         </Routes>
+        <Player />
       </BrowserRouter>
-      <Player />
     </div>
   );
 }

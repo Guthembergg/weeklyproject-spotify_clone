@@ -1,13 +1,13 @@
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
 const Album = () => {
   const [album, setAlbum] = useState([]);
   const param = useParams();
-const dispatch=useDispatch()
-  
+  const dispatch = useDispatch();
+
   const handleAlbum = async () => {
     let albumId = param.id;
 
@@ -25,24 +25,19 @@ const dispatch=useDispatch()
         }
       );
 
-      
-
       if (response.ok) {
         let album = await response.json();
         console.log(album);
-        setAlbum(album); 
+        setAlbum(album);
       } else {
-      
       }
-    } catch (exception) {
-     
-    }
+    } catch (exception) {}
   };
 
   useEffect(() => {
     handleAlbum();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
 
   return (
     <>
@@ -88,25 +83,30 @@ const dispatch=useDispatch()
           <Col className="col-md-8 p-5">
             <Row className="row">
               <Col className="col-md-10 mb-5" id="trackList">
-                {album?.tracks?.data?.map((track,i) => (
-                  <div onClick={()=>{dispatch({type:"PLAYER",payload:track})}} key={i} className="py-3 trackHover">
+                {album?.tracks?.data?.map((track, i) => (
+                  <div
+                    onClick={() => {
+                      dispatch({ type: "PLAYER", payload: track });
+                    }}
+                    key={i}
+                    className="py-3 trackHover"
+                  >
                     <p
                       href="#f"
-                      className="card-title trackHover px-3 fs-6 d-flex align-items-center justify-content-between" 
+                      className="card-title trackHover px-3 fs-6 d-flex align-items-center justify-content-between"
                       style={{ color: "white" }}
-                      
                     >
-                      {track.title}<small className="duration" style={{ color: "white" }}>
-                      {Math.floor(
-                        parseInt(track.duration) / 60 // setting the duration minutes
-                      )}
-                      :
-                      {parseInt(track.duration) % 60 < 10
-                        ? "0" + (parseInt(track.duration) % 60) // checking che duration seconds, if they are less than 10 a 0 is prefixed
-                        : parseInt(track.duration) % 60}
-                    </small>
+                      {track.title}
+                      <small className="duration" style={{ color: "white" }}>
+                        {Math.floor(
+                          parseInt(track.duration) / 60 // setting the duration minutes
+                        )}
+                        :
+                        {parseInt(track.duration) % 60 < 10
+                          ? "0" + (parseInt(track.duration) % 60) // checking che duration seconds, if they are less than 10 a 0 is prefixed
+                          : parseInt(track.duration) % 60}
+                      </small>
                     </p>
-                    
                   </div>
                 ))}
               </Col>
