@@ -4,17 +4,21 @@ import Previous from "../assets/playerbuttons/Previous.png";
 import Play from "../assets/playerbuttons/Play.png";
 import Next from "../assets/playerbuttons/Next.png";
 import Repeat from "../assets/playerbuttons/Repeat.png";
+import { useSelector, useDispatch } from "react-redux";
 
 const Player = () => {
+  const track=useSelector((state)=>state.player[0])
+
+  
   return (
     <>
       <div className="container-fluid fixed-bottom bg-container pt-1 ">
         <Row className="row">
-          <Col xs={12} className="col-lg-10 offset-lg-1">
-            <Row className="row ">
-              <Col className="col-1 col-md-1 col-lg-1 offset-3 offset-md-4 offset-lg-6 playerControls mt-1">
-                <Row className="row d-flex flex-row flex-nowrap ">
-                  <a href="#h" className="p-0">
+          <Col xs={12} className="col-lg-10 offset-lg-1 ">
+            <Row className="row "><Col xs={6}>{track && (<><div className="d-flex offset-3 offset-md-6 offset-lg-4 align-items-center"><img src={track.album.cover_small} alt="song" className="" style={{width:"100px"}}/><p className="fs-5 text-white ms-2">{track.title}</p></div></>)}</Col> 
+              <Col className="col-1 col-md-1 col-lg-1 playerControls mt-1 d-flex ">
+                <Row className="row d-flex flex-column flex-nowrap ">
+                  <div className="d-flex"><a href="#h" className="p-0">
                     <img src={Shuffle} alt="shuffle" />
                   </a>
                   <a href="#h" className="p-0">
@@ -28,12 +32,7 @@ const Player = () => {
                   </a>
                   <a href="#g" className="p-0">
                     <img src={Repeat} alt="shuffle" />
-                  </a>
-                </Row>
-              </Col>
-            </Row>
-            <Row className="row justify-content-center offset-lg-2  playBar pt-3 mt-2">
-              <Col className="col-8 col-md-8">
+                  </a></div><Col className="mt-4"><Row className="row    playBar ">
                 <ProgressBar className="progress">
                   <div
                     className="progress-bar"
@@ -42,9 +41,14 @@ const Player = () => {
                     aria-valuemin="0"
                     aria-valuemax="100"
                   ></div>
-                </ProgressBar>
+                </ProgressBar></Row>
+              </Col>
+                </Row>
               </Col>
             </Row>
+            
+              
+            
           </Col>
         </Row>
       </div>

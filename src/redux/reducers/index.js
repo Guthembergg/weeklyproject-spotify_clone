@@ -1,5 +1,6 @@
 const initialState = {
   music: [],
+  player:[]
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -9,6 +10,10 @@ const mainReducer = (state = initialState, action) => {
         ...state,
         music: [...state.music, ...action.payload],
       };
+      case "PLAYER":
+        return {
+          ...state,player:[action.payload]
+        }
     default:
       return state;
   }

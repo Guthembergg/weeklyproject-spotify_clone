@@ -18,7 +18,7 @@ function App() {
           <Route path="/album/:id" element={<Album />}></Route>
           <Route path="/artist/:id" element={<Artist />}></Route>
         </Routes>
-      </BrowserRouter>{" "}
+      </BrowserRouter>
       <Player />
     </div>
   );
