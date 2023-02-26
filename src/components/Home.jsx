@@ -64,7 +64,7 @@ const Home = () => {
         console.log(songInfo);
         dispatch({
           type: "ADD_MUSIC_SEARCH",
-          payload: songInfo.filter((el, i) => i < 6),
+          payload: songInfo.filter((el, i) => i < 8),
         });
       } else {
         console.log("error");
@@ -186,7 +186,7 @@ const Home = () => {
                 id="popSection"
               >
                 {music
-                  ?.filter((el, i) => i > 12)
+                  ?.filter((el, i) => i > 12 && i < 25)
                   .map((el, i) => (
                     <div
                       key={`pop-${i}`}

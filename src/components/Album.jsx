@@ -9,6 +9,7 @@ const Album = () => {
   const [album, setAlbum] = useState([]);
   const param = useParams();
   const dispatch = useDispatch();
+  const oldPlayer = useSelector((state) => state.player);
   const array = useSelector((state) => state.favourite);
   const handleAlbum = async () => {
     let albumId = param.id;
@@ -88,7 +89,9 @@ const Album = () => {
                 {album?.tracks?.data?.map((track, i) => (
                   <div
                     onClick={() => {
-                      dispatch({ type: "PLAYER", payload: track });
+                      if (oldPlayer[0] !== track) {
+                        dispatch({ type: "PLAYER", payload: track });
+                      }
                     }}
                     key={i}
                     className="py-3 trackHover"
