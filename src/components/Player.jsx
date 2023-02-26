@@ -25,9 +25,14 @@ const Player = () => {
                         className=""
                         style={{ width: "77px" }}
                       />
-                      <p className="fs-5 text-white ms-2 p-0 m-0">
-                        {track.title}
-                      </p>
+                      <div className="d-flex flex-column">
+                        <p className="fs-5 text-white ms-3 p-0 m-0">
+                          {track.title}
+                        </p>
+                        <p className="fs-6 text-white ms-3 p-0 m-0">
+                          {track.artist.name}
+                        </p>
+                      </div>
                     </div>
                   </>
                 )}
