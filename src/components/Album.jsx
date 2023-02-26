@@ -59,7 +59,7 @@ const Album = () => {
             {album && (
               <>
                 <img
-                  src={album?.cover_medium}
+                  src={album?.cover_xl}
                   className="card-img img-fluid"
                   alt="Album"
                 />

@@ -18,18 +18,18 @@ const Player = () => {
               <Col xs={6} className="">
                 {track && (
                   <>
-                    <div className="d-flex offset-3 offset-md-6 offset-lg-4 align-items-center ">
+                    <div className="d-flex  offset-md-1 offset-lg-4 align-items-center mt-1">
                       <img
                         src={track.album.cover_medium}
                         alt="song"
                         className=""
-                        style={{ width: "77px" }}
+                        style={{ width: "70px" }}
                       />
                       <div className="d-flex flex-column">
-                        <p className="fs-5 text-white ms-3 p-0 m-0">
+                        <p className="fs-5 text-white ms-3 p-0 m-0 scrittaPlayer">
                           {track.title}
                         </p>
-                        <p className="fs-6 text-white ms-3 p-0 m-0">
+                        <p className="fs-6 text-white ms-3 p-0 m-0 scrittaPlayer2">
                           {track.artist.name}
                         </p>
                       </div>

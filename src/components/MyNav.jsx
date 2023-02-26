@@ -27,7 +27,7 @@ const MyNav = () => {
               className="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between p-3 align-items-center"
               id="sidebar"
             >
-              <div className="nav-container">
+              <div className="nav-container mt-2">
                 <a className="navbar-brand" href="/">
                   <img src={logo} alt="Spotify_Logo" width="131" height="40" />
                 </a>
@@ -49,20 +49,20 @@ const MyNav = () => {
                   <div className="navbar-nav">
                     <ul>
                       <li>
-                        <a className="nav-item nav-link" href="/">
+                        <a className="nav-item nav-link mt-4" href="/">
                           <FaHome />
                           &nbsp; Home
                         </a>
                       </li>
                       <li>
-                        <a className="nav-item nav-link" href="#hgf">
+                        <a className="nav-item nav-link " href="#hgf">
                           <BsFillBookFill />
                           &nbsp; Your Library
                         </a>
                       </li>
                       <li>
                         <Form
-                          className="input-group mt-3"
+                          className="input-group mt-5"
                           onSubmit={handleSubmit}
                         >
                           <Form.Control
