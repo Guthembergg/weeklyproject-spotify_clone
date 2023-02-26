@@ -1,13 +1,15 @@
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
+import { Heart, HeartFill } from "react-bootstrap-icons";
+
 const Album = () => {
   const [album, setAlbum] = useState([]);
   const param = useParams();
   const dispatch = useDispatch();
-
+  const array = useSelector((state) => state.favourite);
   const handleAlbum = async () => {
     let albumId = param.id;
 
@@ -91,12 +93,38 @@ const Album = () => {
                     key={i}
                     className="py-3 trackHover"
                   >
-                    <p
-                      href="#f"
-                      className="card-title trackHover px-3 fs-6 d-flex align-items-center justify-content-between"
-                      style={{ color: "white" }}
-                    >
-                      {track.title}
+                    <div className="d-flex align-items-center justify-content-between position-relative">
+                      <p
+                        href="#f"
+                        className="card-title trackHover px-3 fs-6 d-flex align-items-center"
+                        style={{ color: "white" }}
+                      >
+                        {track.title}
+                      </p>
+                      {array.includes(track.id) && (
+                        <HeartFill
+                          className="position-absolute end-0 me-5 text-white"
+                          type="submit"
+                          onClick={() => {
+                            dispatch({
+                              type: "REMOVE",
+                              payload: track.id,
+                            });
+                          }}
+                        ></HeartFill>
+                      )}
+                      {!array.includes(track.id) && (
+                        <Heart
+                          className="position-absolute end-0 me-5 text-white "
+                          type="submit"
+                          onClick={() => {
+                            dispatch({
+                              type: "FAVOURITE",
+                              payload: track.id,
+                            });
+                          }}
+                        ></Heart>
+                      )}
                       <small className="duration" style={{ color: "white" }}>
                         {Math.floor(
                           parseInt(track.duration) / 60 // setting the duration minutes
@@ -106,7 +134,7 @@ const Album = () => {
                           ? "0" + (parseInt(track.duration) % 60) // checking che duration seconds, if they are less than 10 a 0 is prefixed
                           : parseInt(track.duration) % 60}
                       </small>
-                    </p>
+                    </div>
                   </div>
                 ))}
               </Col>

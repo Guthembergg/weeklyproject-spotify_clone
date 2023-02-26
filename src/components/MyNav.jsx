@@ -1,9 +1,23 @@
-import { Col, Container, Nav, Row } from "react-bootstrap";
+import { Col, Container, Form, Nav, Row } from "react-bootstrap";
 import { FaHome } from "react-icons/fa";
 import { BsFillBookFill } from "react-icons/bs";
 import logo from "../assets/logo/Spotify_Logo.png";
-
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 const MyNav = () => {
+  const dispatch = useDispatch();
+  const [query, setQuery] = useState("");
+
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+    e.preventDefault();
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch({ type: "SEARCH", payload: query });
+  };
+
   return (
     <>
       <Container>
@@ -47,28 +61,25 @@ const MyNav = () => {
                         </a>
                       </li>
                       <li>
-                        <div className="input-group mt-3">
-                          <input
-                            type="text"
-                            className="form-control mb-2"
-                            id="searchField"
-                            placeholder="Search"
-                            aria-label="Search"
-                            aria-describedby="basic-addon2"
+                        <Form
+                          className="input-group mt-3"
+                          onSubmit={handleSubmit}
+                        >
+                          <Form.Control
+                            type="search"
+                            value={query}
+                            onChange={handleChange}
+                            placeholder="search"
                           />
-                          <div
-                            className="input-group-append"
-                            style={{ marginBottom: "4%" }}
+
+                          <button
+                            className="btn btn-outline-secondary"
+                            type="submit"
+                            id="button-addon1"
                           >
-                            <button
-                              className="btn btn-outline-secondary"
-                              type="button"
-                              id="button-addon1"
-                            >
-                              GO
-                            </button>
-                          </div>
-                        </div>
+                            GO
+                          </button>
+                        </Form>
                       </li>
                     </ul>
                   </div>
